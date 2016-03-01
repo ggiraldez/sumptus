@@ -8,7 +8,10 @@
                  [org.clojure/java.jdbc "0.4.1"]
                  [org.postgresql/postgresql "9.4-1201-jdbc41"]
                  [ring/ring-jetty-adapter "1.4.0"]
-                 [compojure "1.4.0"]]
+                 [compojure "1.4.0"]
+                 [environ "1.0.2"]]
+  :plugins [[lein-environ "1.0.2"]]
   :main ^:skip-aot sumptus.web
   :uberjar-name "sumptus-standalone.jar"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:dev {}
+             :uberjar {:aot :all}})

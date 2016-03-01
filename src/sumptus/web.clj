@@ -1,7 +1,8 @@
 (ns sumptus.web
   (:require [compojure.core :refer [defroutes GET]]
             [ring.adapter.jetty :as ring]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [sumptus.migrations :as migrations])
   (:gen-class))
 
 (defroutes routes
@@ -16,9 +17,10 @@
                             :join? false}))
 
 (defn -main []
-  (let [port (Integer. (env :port "5000"))]
+  (migrations/migrate-all)
+  (let [port (Integer. (env :port))]
     (start port)))
 
 ;; For development
-;; (def server (-main))
+;; (defonce server (-main))
 ;; (.stop server)

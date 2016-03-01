@@ -10,5 +10,10 @@
      :headers {"Content-Type" "text/plain"}
      :body "pong"}))
 
+(defn start [port]
+  (ring/run-jetty #'routes {:port port
+                            :join? false}))
+
 (defn -main []
-  (ring/run-jetty #'routes {:port 5000 :join? false}))
+  (let [port (Integer. (or (System/getenv "PORT") "5000"))]
+    (start port)))

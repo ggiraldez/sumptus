@@ -2,11 +2,11 @@
   (:require [sumptus.db :refer [database-url]]
             [ragtime.core :as core]
             [ragtime.strategy :as strategy]
-            [ragtime.jdbc :as jdbc]))
+            [ragtime.jdbc :as jdbc]
+            [to-jdbc-uri.core :refer [to-jdbc-uri]]))
 
 (def datastore
-  (let [connection-uri (str "jdbc:" database-url)]
-    (jdbc/sql-database {:connection-uri connection-uri})))
+  (jdbc/sql-database {:connection-uri (to-jdbc-uri database-url)}))
 
 (def migrations
   (jdbc/load-resources "migrations"))

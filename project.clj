@@ -10,7 +10,8 @@
                  [ring/ring-jetty-adapter "1.4.0"]
                  [compojure "1.4.0"]
                  [environ "1.0.2"]
-                 [ragtime "0.5.2"]]
+                 [ragtime "0.5.2"]
+                 [com.carouselapps/to-jdbc-uri "0.5.0"]]
   :plugins [[lein-environ "1.0.2"]]
   :main ^:skip-aot sumptus.web
   :uberjar-name "sumptus-standalone.jar"

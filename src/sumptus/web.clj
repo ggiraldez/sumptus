@@ -1,6 +1,7 @@
 (ns sumptus.web
   (:require [compojure.core :refer [defroutes GET]]
-            [ring.adapter.jetty :as ring]))
+            [ring.adapter.jetty :as ring])
+  (:gen-class))
 
 (defroutes routes
   (GET "/" [] "<h1>Sumptus</h1>")

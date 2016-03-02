@@ -7,10 +7,11 @@
             [to-jdbc-uri.core :refer [to-jdbc-uri]]
             [clojure.tools.logging :as log]))
 
-(def datastore
-  (jdbc/sql-database {:connection-uri (to-jdbc-uri database-url)}))
+(defn datastore []
+  (let [connection-uri (to-jdbc-uri database-url)]
+    (jdbc/sql-database {:connection-uri connection-uri})))
 
-(def migrations
+(defn migrations []
   (jdbc/load-resources "migrations"))
 
 (defn logging-migration [migration]
@@ -25,8 +26,8 @@
         (protocols/run-down! migration store)))))
 
 (defn migrate-all []
-  (let [index (core/into-index migrations)
-        strategy strategy/raise-error
-        migrations (map logging-migration migrations)]
+  (let [migrations (map logging-migration (migrations))
+        index (core/into-index migrations)
+        strategy strategy/raise-error]
     (log/info "Running migrations")
-    (core/migrate-all datastore index migrations strategy)))
+    (core/migrate-all (datastore) index migrations strategy)))

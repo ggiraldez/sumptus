@@ -2,7 +2,8 @@
   (:require [compojure.core :refer [defroutes GET]]
             [ring.adapter.jetty :as ring]
             [environ.core :refer [env]]
-            [sumptus.migrations :as migrations])
+            [sumptus.migrations :as migrations]
+            [clojure.tools.logging :as log])
   (:gen-class))
 
 (defroutes routes
@@ -17,6 +18,7 @@
                             :join? false}))
 
 (defn -main []
+  (log/info "Starting Sumptus application")
   (migrations/migrate-all)
   (let [port (Integer. (env :port))]
     (start port)))

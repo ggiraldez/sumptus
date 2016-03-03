@@ -1,0 +1,16 @@
+* Roadmap
+** Implement endpoint for creating new expenses
+** Add data validation, server side
+** Add a nice style to the page (materializecss.com?)
+** Add security, only allow authorized users to see the expense list and add expenses
+** Allow modifying/deleting expenses
+** Import/export expenses
+** Multi-tenancy
+** Client-side UI using Reagent/re-frame
+** Category normalization (maybe)
+** Optimize UX/UI for the common use cases
+** Reports
+*** Category breakdown with date filter
+*** Expenses by month
+*** Side-by-side comparison with the last year
+** Recurring expenses

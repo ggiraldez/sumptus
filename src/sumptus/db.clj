@@ -8,3 +8,11 @@
 ;; (sql/insert! database-url :testing {:data "Hello world!"})
 ;; (sql/query database-url ["select * from testing"])
 ;; (sql/db-do-commands database-url "drop table testing")
+
+(defn recent-expenses
+  ([]
+   (recent-expenses 20))
+  ([count]
+   (sql/query database-url
+              [(str "SELECT \"id\", \"when\", category, description, amount "
+                    "FROM expenses ORDER BY \"when\" DESC LIMIT ?") count])))

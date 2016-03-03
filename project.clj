@@ -13,7 +13,8 @@
                  [ragtime "0.5.2"]
                  [com.carouselapps/to-jdbc-uri "0.5.0"]
                  [org.clojure/tools.logging "0.3.1"]
-                 [ch.qos.logback/logback-classic "1.1.6"]]
+                 [ch.qos.logback/logback-classic "1.1.6"]
+                 [hiccup "1.0.5"]]
   :plugins [[lein-environ "1.0.2"]]
   :main ^:skip-aot sumptus.web
   :uberjar-name "sumptus-standalone.jar"

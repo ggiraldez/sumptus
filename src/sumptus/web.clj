@@ -12,7 +12,7 @@
             [hiccup.page :refer [html5]]
             [hiccup.form :as form]
             [clj-time.format :refer [formatter parse]]
-            [clj-time.coerce :refer [to-sql-date]]
+            [clj-time.core :as time]
             clj-time.jdbc)
   (:gen-class))
 
@@ -68,7 +68,7 @@
 (def date-formatter (formatter "yyyy-MM-dd"))
 
 (defn transform-expense [{:keys [when category description amount]}]
-  {:when (to-sql-date (parse date-formatter when))
+  {:when (time/from-time-zone (parse date-formatter when) (time/default-time-zone))
    :category category
    :description description
    :amount (BigDecimal. amount)})

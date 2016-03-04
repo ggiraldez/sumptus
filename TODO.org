@@ -3,7 +3,7 @@
 
 * Tasks
 ** TODO Implement endpoint for creating new expenses
-- [ ] Fix date input to ignore local timezone
+- [X] Fix date input to ignore local timezone
 - [ ] Use yeSQL for interfacing with the database
 ** TODO Add data validation, server side
 - [ ] Add Prismatic Schema for expense schema

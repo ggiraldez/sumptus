@@ -16,7 +16,8 @@
                  [org.clojure/tools.logging "0.3.1"]
                  [ch.qos.logback/logback-classic "1.1.6"]
                  [hiccup "1.0.5"]
-                 [clj-time "0.11.0"]]
+                 [clj-time "0.11.0"]
+                 [yesql "0.5.2"]]
   :plugins [[lein-environ "1.0.2"]]
   :main ^:skip-aot sumptus.web
   :uberjar-name "sumptus-standalone.jar"

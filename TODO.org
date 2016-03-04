@@ -2,19 +2,25 @@
 #+STARTUP: showall
 
 * Tasks
-** TODO Implement endpoint for creating new expenses
+** DONE Implement endpoint for creating new expenses
+CLOSED: [2016-03-04 Fri 18:36]
 - [X] Fix date input to ignore local timezone
-- [ ] Use yeSQL for interfacing with the database
+- [X] Use Yesql for interfacing with the database
 ** TODO Add data validation, server side
 - [ ] Add Prismatic Schema for expense schema
 - [ ] Define expense type using schema
 - [ ] Validate incoming new expenses
 - [ ] Show validation errors on the browser
 - [ ] Try coercion using schema
-** TODO Refactor web namespace and split at least into views, model and controller
+** TODO Refactor web namespace
+- [ ] Separate views
+- [ ] Separate model related functions
+- [ ] Rework the controller and tie up missing functionality (ie. 404 page, etc.)
+- [ ] Check dependencies, upgrade necessary jars and remove duplicates
 ** TODO Simple UX improvements
 - [ ] Default to today
 - [ ] Suggest categories using a datalist
+** TODO Add unit tests
 ** TODO Add a nice style to the page (materializecss.com?)
 ** TODO Allow modifying/deleting expenses
 ** TODO Add security, only allow authorized users to see the expense list and add expenses

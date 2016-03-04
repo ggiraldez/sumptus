@@ -12,7 +12,7 @@
             [hiccup.page :refer [html5]]
             [hiccup.form :as form]
             [clj-time.format :refer [formatter parse]]
-            [clj-time.core :as time]
+            [clj-time.local :refer [to-local-date-time]]
             clj-time.jdbc)
   (:gen-class))
 
@@ -46,7 +46,7 @@
     [:td (format "$%.2f" amount)]]))
 
 (defn recent-expenses-list []
-  (let [expense-list (db/recent-expenses)]
+  (let [expense-list (db/recent-expenses {:count 20})]
     (html
      [:h2 "Recent expenses"]
      [:table
@@ -68,7 +68,7 @@
 (def date-formatter (formatter "yyyy-MM-dd"))
 
 (defn transform-expense [{:keys [when category description amount]}]
-  {:when (time/from-time-zone (parse date-formatter when) (time/default-time-zone))
+  {:when (to-local-date-time (parse date-formatter when))
    :category category
    :description description
    :amount (BigDecimal. amount)})

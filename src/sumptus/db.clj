@@ -16,3 +16,6 @@
    (sql/query database-url
               [(str "SELECT \"id\", \"when\", category, description, amount "
                     "FROM expenses ORDER BY \"when\" DESC LIMIT ?") count])))
+
+(defn create-expense! [expense]
+  (sql/insert! database-url :expenses expense :entities (sql/quoted \")))

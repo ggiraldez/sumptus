@@ -8,13 +8,15 @@
                  [org.clojure/java.jdbc "0.4.1"]
                  [org.postgresql/postgresql "9.4-1201-jdbc41"]
                  [ring/ring-jetty-adapter "1.4.0"]
+                 [ring/ring-defaults "0.1.5"]
                  [compojure "1.4.0"]
                  [environ "1.0.2"]
                  [ragtime "0.5.2"]
                  [com.carouselapps/to-jdbc-uri "0.5.0"]
                  [org.clojure/tools.logging "0.3.1"]
                  [ch.qos.logback/logback-classic "1.1.6"]
-                 [hiccup "1.0.5"]]
+                 [hiccup "1.0.5"]
+                 [clj-time "0.11.0"]]
   :plugins [[lein-environ "1.0.2"]]
   :main ^:skip-aot sumptus.web
   :uberjar-name "sumptus-standalone.jar"

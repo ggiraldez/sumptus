@@ -1,16 +1,30 @@
-* Roadmap
-** Implement endpoint for creating new expenses
-** Add data validation, server side
-** Add a nice style to the page (materializecss.com?)
-** Add security, only allow authorized users to see the expense list and add expenses
-** Allow modifying/deleting expenses
-** Import/export expenses
-** Multi-tenancy
-** Client-side UI using Reagent/re-frame
-** Category normalization (maybe)
-** Optimize UX/UI for the common use cases
-** Reports
-*** Category breakdown with date filter
-*** Expenses by month
-*** Side-by-side comparison with the last year
-** Recurring expenses
+#+TITLE: Sumptus ToDo list
+#+STARTUP: showall
+
+* Tasks
+** TODO Implement endpoint for creating new expenses
+- [ ] Fix date input to ignore local timezone
+- [ ] Use yeSQL for interfacing with the database
+** TODO Add data validation, server side
+- [ ] Add Prismatic Schema for expense schema
+- [ ] Define expense type using schema
+- [ ] Validate incoming new expenses
+- [ ] Show validation errors on the browser
+- [ ] Try coercion using schema
+** TODO Refactor web namespace and split at least into views, model and controller
+** TODO Simple UX improvements
+- [ ] Default to today
+- [ ] Suggest categories using a datalist
+** TODO Add a nice style to the page (materializecss.com?)
+** TODO Allow modifying/deleting expenses
+** TODO Add security, only allow authorized users to see the expense list and add expenses
+** TODO Import/export expenses
+** TODO Multi-tenancy
+** TODO Client-side UI using Reagent/re-frame
+** TODO Category normalization (maybe)
+** TODO Optimize UX/UI for the common use cases
+** TODO Reports
+*** TODO Category breakdown with date filter
+*** TODO Expenses by month
+*** TODO Side-by-side comparison with the last year
+** TODO Recurring expenses

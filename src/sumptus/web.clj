@@ -1,19 +1,26 @@
 (ns sumptus.web
-  (:require [compojure.core :refer [defroutes GET]]
+  (:require [compojure.core :refer [defroutes GET POST]]
             [ring.adapter.jetty :as ring]
+            [ring.util.response :as response]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.util.anti-forgery :as anti-forgery]
             [environ.core :refer [env]]
             [sumptus.migrations :as migrations]
             [sumptus.db :as db]
             [clojure.tools.logging :as log]
             [hiccup.core :refer :all]
             [hiccup.page :refer [html5]]
-            [hiccup.form :as form])
+            [hiccup.form :as form]
+            [clj-time.format :refer [formatter parse]]
+            [clj-time.coerce :refer [to-sql-date]]
+            clj-time.jdbc)
   (:gen-class))
 
 (defn new-expense-form []
   (html
    (form/form-to
     [:post "/add-expense"]
+    (anti-forgery/anti-forgery-field)
     [:fieldset
      [:div
       (form/label :when "When")
@@ -52,22 +59,42 @@
       [:tbody
        (for [expense expense-list] (expense-table-row expense))]])))
 
-(defn home [req]
+(defn home []
   (html5
    [:h1 "Sumptus"]
    (new-expense-form)
    (recent-expenses-list)))
 
+(def date-formatter (formatter "yyyy-MM-dd"))
+
+(defn transform-expense [{:keys [when category description amount]}]
+  {:when (to-sql-date (parse date-formatter when))
+   :category category
+   :description description
+   :amount (BigDecimal. amount)})
+
+(defn add-expense [req]
+  (let [params (:params req)
+        expense (select-keys params [:when :category :description :amount])
+        expense (transform-expense expense)]
+    (log/info (str "Creating expense: " expense))
+    (db/create-expense! expense)
+    (response/redirect "/" :see-other)))
+
 (defroutes routes
-  (GET "/" [] home)
+  (GET "/" [] (home))
+  (POST "/add-expense" req (add-expense req))
   (GET "/ping" []
     {:status 200
      :headers {"Content-Type" "text/plain"}
      :body "pong"}))
 
+(def application
+  (wrap-defaults #'routes site-defaults))
+
 (defn start [port]
-  (ring/run-jetty #'routes {:port port
-                            :join? false}))
+  (ring/run-jetty application {:port port
+                               :join? false}))
 
 (defn -main []
   (log/info "Starting Sumptus application")

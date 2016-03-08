@@ -9,13 +9,13 @@ CLOSED: [2016-03-04 Fri 18:36]
 ** TODO Add data validation, server side
 - [ ] Add Prismatic Schema for expense schema
 - [ ] Define expense type using schema
-- [ ] Validate incoming new expenses
-- [ ] Show validation errors on the browser
-- [ ] Try coercion using schema
+- [ ] Validate incoming new expenses and show validation errors in the browser
+- [ ] Define coercer for user input expenses
+- [ ] Change the amount data type in the database to Decimal
 ** TODO Refactor web namespace
-- [ ] Separate views
-- [ ] Separate model related functions
-- [ ] Rework the controller and tie up missing functionality (ie. 404 page, etc.)
+- [X] Separate views
+- [X] Separate model related functions
+- [X] Rework the controller and tie up missing functionality (ie. 404 page, etc.)
 - [ ] Check dependencies, upgrade necessary jars and remove duplicates
 ** TODO Simple UX improvements
 - [ ] Default to today

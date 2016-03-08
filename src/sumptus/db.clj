@@ -1,6 +1,7 @@
 (ns sumptus.db
   (:require [yesql.core :refer [defquery]]
-            [environ.core :refer [env]]))
+            [environ.core :refer [env]]
+            clj-time.jdbc))
 
 (def database-url (env :database-url))
 

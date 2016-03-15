@@ -6,6 +6,13 @@
 CLOSED: [2016-03-04 Fri 18:36]
 - [X] Fix date input to ignore local timezone
 - [X] Use Yesql for interfacing with the database
+** DONE Add a nice style to the page
+CLOSED: [2016-03-14 Mon 22:46]
+Used Material style from http://muicss.com
+** DONE Simple UX improvements
+CLOSED: [2016-03-14 Mon 22:44]
+- [X] Default to today
+- [X] Suggest categories using a datalist
 ** TODO Add data validation, server side
 Analyze if using Schema is the best option; maybe settle for a simpler solution
 like Bouncer. Otherwise, check Clojure Toolbox for other alternatives. Basic
@@ -21,15 +28,12 @@ standard way as to facilitate rendering.
 - [X] Separate model related functions
 - [X] Rework the controller and tie up missing functionality (ie. 404 page, etc.)
 - [ ] Check dependencies, upgrade necessary jars and remove duplicates
-** TODO Simple UX improvements
-- [ ] Default to today
-- [ ] Suggest categories using a datalist
 ** TODO Implement a component architecture
 Maybe use yoyo, or component eventually
 ** TODO Add unit tests
-** TODO Add a nice style to the page (materializecss.com?)
 ** TODO Allow modifying/deleting expenses
 ** TODO Add security, only allow authorized users to see the expense list and add expenses
+** TODO Minify assets
 ** TODO Import/export expenses
 ** TODO Multi-tenancy
 ** TODO Client-side UI using Reagent/re-frame

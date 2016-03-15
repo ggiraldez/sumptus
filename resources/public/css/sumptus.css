@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+div.title {
+  padding-left: 15px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.expense-form {
+  margin-top: 30px;
+}

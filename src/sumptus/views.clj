@@ -4,22 +4,38 @@
             [hiccup.page :refer [html5 include-css include-js]]
             [hiccup.form :as form]))
 
-(defhtml new-expense-form []
+(defhtml new-expense-form [expense]
   (form/form-to
    {:class "mui-panel expense-form"}
    [:post "/add-expense"]
    (anti-forgery/anti-forgery-field)
    [:div.mui-textfield
-    (form/text-field {:type :date :required true} :when)
+    (form/text-field {:type :date
+                      :required true
+                      :autofocus true}
+                     :when
+                     (:when expense))
     (form/label :when "When")]
    [:div.mui-textfield
-    (form/text-field {:required true} :category)
+    (form/text-field {:required true
+                      :placeholder "Choose a category or enter a new one"
+                      :autocomplete "off"
+                      :list "categories"}
+                     :category
+                     (:category expense))
     (form/label :category "Category")]
    [:div.mui-textfield
-    (form/text-field {:required true} :description)
+    (form/text-field {:required true
+                      :placeholder "Brief description of the expense"}
+                     :description
+                     (:description expense))
     (form/label :description "Description")]
    [:div.mui-textfield
-    (form/text-field {:type :number :step 0.01 :required true} :amount)
+    (form/text-field {:type :number
+                      :step 0.01
+                      :required true
+                      :placeholder "How much did you spend"}
+                     :amount (:amount expense))
     (form/label :amount "Amount")]
    [:div
     (form/submit-button {:class "mui-btn mui-btn--primary"} "Add expense")]))
@@ -42,7 +58,11 @@
    [:tbody
     (for [expense expense-list] (expense-table-row expense))]])
 
-(defn home [recent-expenses]
+(defhtml category-datalist [categories]
+  [:datalist#categories
+   (for [category categories] [:option {:value category}])])
+
+(defn home [{:keys [expense-list expense-template category-list]}]
   (html5
    [:head
     [:title "Sumptus"]
@@ -55,7 +75,8 @@
     [:div.mui-appbar
      [:div.mui--text-title.mui--appbar-height.title "Sumptus"]]
     [:div.mui-container
-     (new-expense-form)
-     (recent-expenses-list recent-expenses)
+     (category-datalist category-list)
+     (new-expense-form expense-template)
+     (recent-expenses-list expense-list)
      (include-js "js/mui.min.js")
      (include-js "js/sumptus.js")]]))

@@ -10,3 +10,10 @@
 
 (defquery create-expense! "queries/create_expense.sql"
   {:connection database-url})
+
+(defquery fetch-category-rows "queries/fetch_categories.sql"
+  {:connection database-url})
+
+(defn fetch-categories []
+  (let [categories (fetch-category-rows)]
+    (for [row categories] (:category row))))

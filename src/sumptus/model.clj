@@ -9,3 +9,9 @@
    :category category
    :description description
    :amount (BigDecimal. amount)})
+
+(defn default-expense []
+  {:when (clj-time.core/today)
+   :category nil
+   :description nil
+   :amount nil})

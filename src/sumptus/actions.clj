@@ -15,8 +15,12 @@
     (response/redirect "/" :see-other)))
 
 (defn expenses-index []
-  (let [recent-expenses (db/recent-expenses {:count 10})]
-    (views/home recent-expenses)))
+  (let [recent-expenses (db/recent-expenses {:count 10})
+        new-expense (model/default-expense)
+        categories (db/fetch-categories)]
+    (views/home {:expense-list recent-expenses
+                 :expense-template new-expense
+                 :category-list categories})))
 
 (defroutes routes
   (GET "/" [] (expenses-index))

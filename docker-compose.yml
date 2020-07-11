@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:9.6.10-alpine
+    volumes:
+      - db:/var/lib/postgresql/data
+    container_name: sumptus_db
+    ports:
+      - 5432:5432
+
+volumes:
+  db:
